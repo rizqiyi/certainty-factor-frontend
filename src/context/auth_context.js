@@ -8,6 +8,7 @@ const initialState = {
   is_error_register: false,
   is_error_login: false,
   token: cookies.get("jwtToken"),
+  account_id: localStorage.getItem("account_id"),
 };
 
 const AuthContext = createContext(initialState);
@@ -43,9 +44,14 @@ const AuthProvider = ({ children }) => {
 
       cookies.set("token", res.data.token);
 
+      localStorage.setItem("account_id", res.data ? res.data.data._id : "");
+
       dispatch({
         type: "LOGIN_ACCOUNT",
-        payload: { message: res.data.message, token: res.data.token },
+        payload: {
+          message: res.data.message,
+          token: res.data.token,
+        },
       });
 
       redirect();
@@ -68,6 +74,7 @@ const AuthProvider = ({ children }) => {
       value={{
         message: state.message,
         is_error: state.is_error,
+        account_id: state.account_id,
         register: Register,
         login: Login,
         reset: Reset,

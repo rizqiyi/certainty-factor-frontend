@@ -23,7 +23,7 @@ let theme = createMuiTheme({
       light: "#ffebee",
     },
     warning: {
-      main: "#F7C032",
+      main: "#ffa000",
     },
     info: {
       main: "#2340F5",
