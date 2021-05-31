@@ -5,6 +5,8 @@ import Navigations from "./routes/navigation";
 
 const App = () => {
   return (
+    // apply semua provider ke navigations
+    // yang mana navigations disini berisi semua component
     <AuthProvider>
       <MainProvider>
         <Navigations />

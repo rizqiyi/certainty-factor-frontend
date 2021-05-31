@@ -1,6 +1,7 @@
 import decode from "jwt-decode";
 import cookie from "js-cookie";
 
+// fungsi untuk cek token auth pada sisi client
 const checkToken = () => {
   const jwtToken = cookie.get("token");
 

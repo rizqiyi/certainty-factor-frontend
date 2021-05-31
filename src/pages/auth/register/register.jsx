@@ -10,14 +10,23 @@ import StyledButton from "../../../components/button/button";
 import { FastField, Form, Formik } from "formik";
 import { AuthContext } from "../../../context/auth_context";
 import StyledAlert from "../../../components/alert/alert";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const RegisterPage = () => {
   const classes = useStyles();
   const isFirstRender = useRef(true);
 
-  const { register, message, reset, is_error_register } =
-    useContext(AuthContext);
+  // mengambil data dan fungsi pada auth context
+  const {
+    register,
+    message,
+    reset,
+    is_error_register,
+    is_success_register,
+    is_loading,
+  } = useContext(AuthContext);
 
+  // reset data pada auth context setiap page pertama kali dibuka
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -29,6 +38,7 @@ const RegisterPage = () => {
     showPassword: false,
   });
 
+  // fungsi untuk toggle input password agar visible atau tidak
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -37,15 +47,26 @@ const RegisterPage = () => {
     event.preventDefault();
   };
 
+  console.log(is_loading);
+
+  // komponen - komponen yang terdapat pada halaman registrasi
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
         <Box marginBottom={!!message ? 3 : 0}>
-          {is_error_register ? (
-            <StyledAlert message={message} severity="error" reset={reset} />
-          ) : (
-            <StyledAlert message={message} severity="success" reset={reset} />
-          )}
+          {/* menampilkan error message atau success message ketika user menekan tombol daftar */}
+          <StyledAlert
+            condition={is_error_register}
+            message={message}
+            severity="error"
+            reset={reset}
+          />
+          <StyledAlert
+            condition={is_success_register}
+            message={message}
+            severity="success"
+            reset={reset}
+          />
         </Box>
         <Formik
           initialValues={{
@@ -55,8 +76,8 @@ const RegisterPage = () => {
             password_verify: "",
           }}
           onSubmit={(values, { resetForm }) => {
+            // fungsi register untuk mendaftarkan user
             register(values);
-            resetForm();
           }}
         >
           {({ handleChange }) => (
@@ -69,7 +90,6 @@ const RegisterPage = () => {
                     text="Silakan daftar akun untuk melakukan login"
                   />
                 </Box>
-
                 <Box>
                   <FastField
                     variant="filled"
@@ -155,30 +175,31 @@ const RegisterPage = () => {
                   />
                 </Box>
                 <Box>
-                  <StyledButton
-                    color="primary"
-                    variant="contained"
-                    text="DAFTAR"
-                    type="submit"
-                  />
+                  {is_loading ? (
+                    <CircularProgress />
+                  ) : (
+                    <StyledButton
+                      color="primary"
+                      variant="contained"
+                      text="DAFTAR"
+                      type="submit"
+                    />
+                  )}
                 </Box>
-              </Box>
-              <Box className={classes.centered}>
-                <StyledTypography
-                  variant="subtitle2"
-                  text="Sudah mempunyai akun?"
-                />
-              </Box>
-              <Box className={classes.centered}>
-                <StyledTextLink
-                  variant="subtitle2"
-                  to="/login"
-                  text="Login Sekarang"
-                />
               </Box>
             </Form>
           )}
         </Formik>
+        <Box className={classes.centered}>
+          <StyledTypography variant="subtitle2" text="Sudah mempunyai akun?" />
+        </Box>
+        <Box className={classes.centered}>
+          <StyledTextLink
+            variant="subtitle2"
+            to="/login"
+            text="Login Sekarang"
+          />
+        </Box>
       </Paper>
     </div>
   );

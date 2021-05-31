@@ -3,6 +3,7 @@ import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
 } from "@material-ui/core";
 
+// override global style bawaan dari material ui
 let theme = createMuiTheme({
   zIndex: {
     appBar: 1251,
@@ -37,6 +38,7 @@ let theme = createMuiTheme({
   },
 });
 
+// membuat font agar responsive di berbagai layar device
 theme = responsiveFontSizes(theme);
 
 export default theme;

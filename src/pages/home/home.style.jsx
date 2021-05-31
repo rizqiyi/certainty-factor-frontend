@@ -1,5 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 
+// style pada halaman home menggunakan fungsi
+// bawaan material ui (jss)
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: "30px",

@@ -1,5 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 
+// style pada halaman login menggunakan fungsi
+// bawaan material ui (jss)
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "100vh",

@@ -1,4 +1,10 @@
-import { Box, Paper, InputAdornment, IconButton } from "@material-ui/core";
+import {
+  Box,
+  Paper,
+  InputAdornment,
+  IconButton,
+  CircularProgress,
+} from "@material-ui/core";
 import React, { useContext } from "react";
 import useStyles from "./login.style";
 import Visibility from "@material-ui/icons/Visibility";
@@ -15,12 +21,14 @@ const LoginPage = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  const { login } = useContext(AuthContext);
+  // mengambil data dan fungsi pada auth context
+  const { login, is_error_login, is_loading } = useContext(AuthContext);
 
   const [values, setValues] = React.useState({
     showPassword: false,
   });
 
+  // fungsi untuk toggle input password agar visible atau tidak
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -29,15 +37,18 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
+  // komponen - komponen yang terdapat pada halaman login
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
         <Formik
           initialValues={{ username: "", password: "" }}
           onSubmit={(values, { resetForm }) => {
+            // fungsi redirect untuk push halaman ke home
             const redirect = () => history.push("/");
+
+            // fungsi login untuk login ke sistem
             login(values, redirect);
-            resetForm();
           }}
         >
           {({ handleChange }) => (
@@ -95,12 +106,17 @@ const LoginPage = () => {
                   />
                 </Box>
                 <Box>
-                  <StyledButton
-                    color="primary"
-                    variant="contained"
-                    text="LOGIN"
-                    type="submit"
-                  />
+                  {is_loading ? (
+                    <CircularProgress />
+                  ) : (
+                    <StyledButton
+                      color="primary"
+                      variant="contained"
+                      text="LOGIN"
+                      disabled={is_error_login}
+                      type="submit"
+                    />
+                  )}
                 </Box>
               </Box>
             </Form>

@@ -7,6 +7,7 @@ import HomePage from "../pages/home/home";
 import PrivateRoute from "./private-route";
 import PublicRoute from "./public-route";
 
+// inisialisasi masing" routes ke masing" component pada sisi client
 const Navigations = () => {
   return (
     <>
