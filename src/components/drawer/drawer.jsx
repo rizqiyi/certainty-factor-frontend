@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import { Box, ListItemText } from "@material-ui/core";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import useStyles from "./drawer.style";
+import { AuthContext } from "../../context/auth_context";
 
 const DrawerComponent = ({ ...props }) => {
   const { open, toggleDrawer } = props;
   const classes = useStyles();
-  const location = useLocation();
   const history = useHistory();
-
-  const currentPage = (path, active, inactive) => {
-    return location.pathname === path ? active : inactive;
-  };
+  const { logout } = useContext(AuthContext);
 
   return (
     <>
@@ -39,14 +36,22 @@ const DrawerComponent = ({ ...props }) => {
                     history.push("/");
                   }}
                 >
-                  <ListItemText
-                    primary="Home"
-                    className={currentPage(
-                      "/",
-                      classes.menuTextActive,
-                      classes.menuText
-                    )}
-                  />
+                  <ListItemText primary="Home" className={classes.menuText} />
+                </Box>
+              </ListItem>
+              <ListItem button>
+                <Box
+                  width="100%"
+                  onClick={() => {
+                    toggleDrawer();
+                    const redirect = () => history.push("/login");
+
+                    // ketika user click pada text logout
+                    // maka user akan redirect ke halaman login
+                    logout(redirect);
+                  }}
+                >
+                  <ListItemText primary="Logout" className={classes.menuText} />
                 </Box>
               </ListItem>
             </List>

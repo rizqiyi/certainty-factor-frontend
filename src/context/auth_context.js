@@ -45,6 +45,7 @@ const AuthProvider = ({ children }) => {
   };
 
   // fungsi Login untuk hit api login ke sisi server
+  // dan menambahkan cookie pada client
   const Login = async (payload, redirect) => {
     try {
       dispatch({
@@ -77,6 +78,17 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // Fungsi untuk logout dengan remove cookie pada client
+  const Logout = (redirect) => {
+    cookies.remove("token", { path: "/" });
+
+    dispatch({
+      type: "USER_LOGOUT",
+    });
+
+    return redirect();
+  };
+
   // Fungsi reset untuk reset value yang sudah diproses menjadi default kembali
   const Reset = () => {
     return dispatch({
@@ -95,6 +107,7 @@ const AuthProvider = ({ children }) => {
         register: Register,
         login: Login,
         reset: Reset,
+        logout: Logout,
       }}
     >
       {children}

@@ -37,16 +37,6 @@ const useStyles = makeStyles((theme) => ({
   menuText: {
     fontFamily: "Poppins",
     fontSize: "16px",
-    fontWeight: 500,
-    cursor: "pointer",
-    transition: "0.3s all ease-out",
-    "&:hover": {
-      color: theme.palette.primary.main,
-    },
-  },
-  menuTextActive: {
-    fontFamily: "Poppins",
-    fontSize: "16px",
     fontWeight: 600,
     cursor: "pointer",
     transition: "0.3s all ease-out",

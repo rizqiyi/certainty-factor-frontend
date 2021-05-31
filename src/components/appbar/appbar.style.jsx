@@ -32,18 +32,13 @@ const useStyles = makeStyles((theme) => ({
   },
   menuText: {
     fontSize: "16px",
-    fontWeight: "500 !important",
     cursor: "pointer",
     transition: "0.3s all ease-out",
+    fontWeight: "600 !important",
+    color: theme.palette.primary.main,
     "&:hover": {
       color: theme.palette.primary.main,
     },
-  },
-  menuTextActive: {
-    fontSize: "16px",
-    fontWeight: "600 !important",
-    cursor: "pointer",
-    color: theme.palette.primary.main,
   },
   logo: {
     width: "20%",

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import useStyles from "./register.style";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import StyledTextLink from "../../../components/typography_link/typography_link";
+import StyledTextLink from "../../../components/link/link";
 import StyledTextField from "../../../components/textfield/textfield";
 import StyledTypography from "../../../components/typography/typography";
 import StyledButton from "../../../components/button/button";
@@ -46,8 +46,6 @@ const RegisterPage = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  console.log(is_loading);
 
   // komponen - komponen yang terdapat pada halaman registrasi
   return (

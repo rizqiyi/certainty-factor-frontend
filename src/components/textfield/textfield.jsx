@@ -2,6 +2,7 @@ import { TextField } from "@material-ui/core";
 import React from "react";
 import useStyles from "./textfield.style";
 
+// pembuatan reusable component input
 const StyledTextField = ({ classes, ...rest }) => {
   const default_style = useStyles();
 

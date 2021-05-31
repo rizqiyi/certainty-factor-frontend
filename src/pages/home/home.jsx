@@ -19,8 +19,6 @@ const HomePage = () => {
   const { index, symptoms, create, result, reset, is_fetching, is_loading } =
     useContext(MainContext);
 
-  console.log(result);
-
   // mengambil data dan state management pada setiap halaman direfresh
   useEffect(() => {
     index();

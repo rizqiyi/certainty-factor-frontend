@@ -2,6 +2,7 @@ import { Typography } from "@material-ui/core";
 import React from "react";
 import useStyles from "./typography.style";
 
+// pembuatan reusable component text
 const StyledTypography = ({ classes, text, ...rest }) => {
   const default_style = useStyles();
 

@@ -29,6 +29,7 @@ const AuthReducer = (state, action) => {
         token: action.payload.token,
       };
 
+    case "USER_LOGOUT":
     case "RESET_VALUES":
       return {
         message: "",

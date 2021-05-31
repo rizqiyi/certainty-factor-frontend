@@ -10,7 +10,7 @@ import useStyles from "./login.style";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import StyledTextField from "../../../components/textfield/textfield";
-import StyledTextLink from "../../../components/typography_link/typography_link";
+import StyledTextLink from "../../../components/link/link";
 import StyledTypography from "../../../components/typography/typography";
 import StyledButton from "../../../components/button/button";
 import { FastField, Form, Formik } from "formik";
@@ -58,7 +58,7 @@ const LoginPage = () => {
                   <StyledTypography variant="h4" text="Selamat Datang" />
                   <StyledTypography
                     variant="subtitle1"
-                    text="Silakan login terlebih dahulu"
+                    text="Sistem Pakar Diagnosa Penyakit Ayam"
                   />
                 </Box>
                 <Box>
