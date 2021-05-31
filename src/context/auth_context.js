@@ -73,7 +73,7 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         message: state.message,
-        is_error: state.is_error,
+        is_error_register: state.is_error_register,
         account_id: state.account_id,
         register: Register,
         login: Login,

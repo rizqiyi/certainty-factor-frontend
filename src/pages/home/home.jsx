@@ -31,7 +31,6 @@ const HomePage = () => {
           }}
           onSubmit={(values) => {
             create(values);
-            console.log(values);
           }}
         >
           {({ values, resetForm }) => (
